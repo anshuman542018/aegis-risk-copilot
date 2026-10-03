@@ -1,0 +1,35 @@
+{
+  "alerts": [
+    {
+      "account": "ACC-001",
+      "score": 100
+    },
+    {
+      "account": "ACC-002",
+      "score": 55
+    },
+    {
+      "account": "ACC-003",
+      "score": 55
+    },
+    {
+      "account": "ACC-004",
+      "score": 45
+    },
+    {
+      "account": "ACC-008",
+      "score": 40
+    }
+  ],
+  "credit": {
+    "ead": 89670000,
+    "loss": 2140748.4,
+    "pastDue": 11228000
+  },
+  "liquidity": {
+    "outflows": 20000000,
+    "net": 14000000,
+    "lcr": 107.14285714285714,
+    "shortfall": 0
+  }
+}

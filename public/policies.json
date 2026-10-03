@@ -1,0 +1,38 @@
+[
+  {
+    "id": "POL-01",
+    "title": "Velocity monitoring",
+    "text": "Five or more outward payments within any 30-minute window require investigation. A monitoring signal is not proof of fraud.",
+    "source": "Synthetic internal AML policy v1.0, section 2.1"
+  },
+  {
+    "id": "POL-02",
+    "title": "Payment structuring",
+    "text": "Three or more payments between INR 45,000 and INR 50,000 to the same beneficiary within 24 hours trigger a structuring review. These thresholds are internal demonstration settings, not statutory thresholds.",
+    "source": "Synthetic internal AML policy v1.0, section 2.2"
+  },
+  {
+    "id": "POL-03",
+    "title": "Shared-device accounts",
+    "text": "A device used by three or more account holders is a linkage signal; shared households and authorized business operators must be investigated before escalation.",
+    "source": "Synthetic internal AML policy v1.0, section 2.3"
+  },
+  {
+    "id": "POL-04",
+    "title": "Circular movement",
+    "text": "A directed three-account payment cycle within 24 hours requires a documented review of purpose, source of funds and beneficial ownership.",
+    "source": "Synthetic internal AML policy v1.0, section 2.4"
+  },
+  {
+    "id": "POL-05",
+    "title": "Credit exposure methodology",
+    "text": "Expected loss = exposure at default × probability of default × loss given default. Probabilities and losses are synthetic assumptions; this is a scenario calculation, not a validated underwriting model.",
+    "source": "Synthetic risk methodology v1.0, section 3"
+  },
+  {
+    "id": "POL-06",
+    "title": "Liquidity coverage methodology",
+    "text": "Illustrative LCR = high-quality liquid assets / (30-day outflows − min(inflows, 75% of outflows)). A 100% baseline is an illustration of the Basel LCR minimum under normal conditions; asset eligibility and jurisdictional reporting require separate validation.",
+    "source": "Basel Committee LCR standard, January 2013; synthetic balance sheet"
+  }
+]

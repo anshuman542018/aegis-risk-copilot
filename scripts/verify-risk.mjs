@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {seedData,analyze,credit,liquidity} from '../lib/risk.ts';
+const d=seedData();const a=analyze(d,40);
+assert.equal(d.transactions.length,257);
+assert.deepEqual(a.map(x=>[x.account,x.score]),[['ACC-001',100],['ACC-002',55],['ACC-003',55],['ACC-004',45],['ACC-008',40]]);
+assert.equal(liquidity(d,20).lcr,100*15000000/18000000);
+assert.equal(liquidity(d,20).shortfall,3000000);
+assert.ok(credit(d,2).loss>credit(d).loss);
+assert.equal(analyze({...d,transactions:[],accounts:d.accounts.map(x=>({...x,device:x.id,kyc:'Verified'}))},1).length,0);
+assert.equal(analyze(d,80).length,1);
+console.log('PASS: seeded fraud cases, clean control, severity threshold, liquidity stress and credit monotonicity.');

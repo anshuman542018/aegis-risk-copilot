@@ -1,0 +1,1 @@
+{"verifiedAt":"2026-10-03","method":"Snowflake SQL API with read-only RSA service user","queryId":"01c77cb6-0104-d2d7-0005-711e000141c2","status":200,"scores":[["ACC-001",100],["ACC-002",55],["ACC-003",55],["ACC-004",45],["ACC-008",40]],"matchesReference":true,"dataset":"Deterministic synthetic dataset v1","cocoCli":"Attempt rejected by account eligibility"}

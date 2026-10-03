@@ -1,0 +1,11 @@
+import crypto from 'node:crypto';import fs from 'node:fs';
+fs.mkdirSync('.secrets',{recursive:true});
+const {publicKey,privateKey}=crypto.generateKeyPairSync('rsa',{modulusLength:2048,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
+fs.writeFileSync('.secrets/snowflake-private.p8',privateKey);
+const der=crypto.createPublicKey(publicKey).export({type:'spki',format:'der'});
+fs.writeFileSync('.secrets/snowflake-fingerprint.txt','SHA256:'+crypto.createHash('sha256').update(der).digest('base64'));
+fs.writeFileSync('.secrets/setup-service.sql',`CREATE ROLE IF NOT EXISTS AEGIS_APP_ROLE;\nGRANT USAGE ON DATABASE AEGIS_RISK TO ROLE AEGIS_APP_ROLE;\nGRANT USAGE ON SCHEMA AEGIS_RISK.PUBLIC TO ROLE AEGIS_APP_ROLE;\nGRANT USAGE ON WAREHOUSE AEGIS_WH TO ROLE AEGIS_APP_ROLE;\nGRANT SELECT ON VIEW AEGIS_RISK.PUBLIC.DEMO_SNAPSHOT TO ROLE AEGIS_APP_ROLE;\nGRANT SELECT ON VIEW AEGIS_RISK.PUBLIC.FRAUD_SIGNALS TO ROLE AEGIS_APP_ROLE;\nGRANT SELECT ON VIEW AEGIS_RISK.PUBLIC.CREDIT_EXPOSURE TO ROLE AEGIS_APP_ROLE;\nGRANT SELECT ON TABLE AEGIS_RISK.PUBLIC.POLICY_DOCUMENTS TO ROLE AEGIS_APP_ROLE;\nGRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE AEGIS_APP_ROLE;\nCREATE USER IF NOT EXISTS AEGIS_APP_USER TYPE=SERVICE RSA_PUBLIC_KEY='${der.toString('base64')}' DEFAULT_ROLE=AEGIS_APP_ROLE DEFAULT_WAREHOUSE=AEGIS_WH;\nGRANT ROLE AEGIS_APP_ROLE TO USER AEGIS_APP_USER;\nSELECT 'AEGIS read-only service connection ready' STATUS;\n`);
+const env={SNOWFLAKE_ACCOUNT:'uudhgph-wx03134',SNOWFLAKE_ACCOUNT_LOCATOR:'OB73233',SNOWFLAKE_USER:'AEGIS_APP_USER',SNOWFLAKE_PRIVATE_KEY:privateKey,SNOWFLAKE_PUBLIC_KEY_FINGERPRINT:'SHA256:'+crypto.createHash('sha256').update(der).digest('base64'),SNOWFLAKE_ROLE:'AEGIS_APP_ROLE',SNOWFLAKE_WAREHOUSE:'AEGIS_WH',SNOWFLAKE_CORTEX_ENABLED:'true'};
+fs.writeFileSync('.secrets/runtime-env.json',JSON.stringify(env));
+fs.writeFileSync('.dev.vars',Object.entries(env).map(([k,v])=>`${k}=${JSON.stringify(v)}`).join('\n')+'\n');
+console.log('Generated read-only service connection configuration. Private key remains excluded from source.');
