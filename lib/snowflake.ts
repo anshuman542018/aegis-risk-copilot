@@ -1,5 +1,5 @@
 import {Dataset,seedData,analyze} from './risk';
-import {env} from 'cloudflare:workers';
+import {env} from './vercel-worker-env';
 export function snowflakeConfig(key:string):string|undefined{return (env as unknown as Record<string,string>)[key]||process.env[key];}
 type SQLResult={data?:string[][];statementHandle?:string;statementStatusUrl?:string;resultSetMetaData?:{numRows:number};message?:string};
 async function keyPairToken():Promise<string>{

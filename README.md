@@ -11,6 +11,8 @@ npm ci
 npm run dev
 ```
 
+For the Vercel / Next.js runtime, run `node node_modules/next/dist/bin/next dev` locally and `vercel deploy --prod` from the linked project. `vercel.json` selects the standard Next.js build. Server-only Snowflake settings belong in Vercel's production environment, including the sensitive RSA private key. The Worker build remains available through the Vinext scripts and its environment adapter.
+
 Without Snowflake configuration, the application labels itself as a synthetic demo. When configured, data and query IDs come from Snowflake; a failed configured connection returns an error rather than silently substituting demo data.
 
 ## Snowflake setup

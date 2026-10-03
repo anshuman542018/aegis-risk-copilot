@@ -1,0 +1,14 @@
+node_modules
+.git
+.secrets
+.dev.vars
+.env*
+.presentation-build
+.sites-runtime
+.chart-data-*
+.wrangler
+dist
+.next
+.vinext
+*.tsbuildinfo
+*.tar.gz
