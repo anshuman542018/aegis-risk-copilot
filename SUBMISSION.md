@@ -32,3 +32,5 @@ The GitHub/Deployed Link form requires the challenge selection, public GitHub re
 
 Official-template PDF: /Aegis-submission.pdf (6 pages, below 5 MB). Confirm team name and registered team size on the cover before final upload. Demo video is a mandatory 3–5 minute recording showing Input → Processing → Output via CoCo CLI. The present account cannot satisfy that requirement. Do not substitute a static walkthrough or claim a CoCo workflow was executed.
 
+
+Demo video: https://aegis-risk-copilot.vercel.app/demo.html. The 4 minute 25 second edited walkthrough uses actual live app captures and generated narration. It demonstrates fraud triage, policy evidence, finding export, governed questions, and portfolio stress. It explicitly states that CoCo CLI was not executed and does not satisfy the mandatory CoCo recording requirement.
